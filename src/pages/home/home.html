@@ -10,6 +10,7 @@
   <div class="center-wrapper">
     
     <ion-input [(ngModel)]="code" type="text" placeholder="Code"></ion-input>
+    <p>{{ error }}</p>
     <div class="results" *ngIf="result">
       <p>{{ result }}</p>
     </div>

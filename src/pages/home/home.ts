@@ -10,6 +10,7 @@ import { UserDataPage } from '../user-data/user-data';
 export class HomePage {
   result: any;
   code: any;
+  error: string = '';
   constructor(
     public navCtrl: NavController,
     public qrScanner: QRScanner
@@ -40,7 +41,10 @@ export class HomePage {
           // permission was denied, but not permanently. You can ask for permission again at a later time.
         }
       })
-      .catch((e: any) => console.log('Error is', e));
+      .catch((e: any) => { 
+        this.error = e;
+        console.log('Error is', e)
+       });
   }
 
   search() {
