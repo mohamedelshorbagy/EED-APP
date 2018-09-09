@@ -14,12 +14,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'user-data.html',
 })
 export class UserDataPage {
-
+  search: string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.search = this.navParams.get('textSearch');
+    console.log(this.search);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserDataPage');
   }
+
+
+
+  getUserData() {
+    /**
+     * 
+     * Logic For Getting User Data
+     * 
+     */
+  }
+
 
 }
