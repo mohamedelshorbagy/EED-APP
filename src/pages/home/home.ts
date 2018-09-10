@@ -30,6 +30,8 @@ export class HomePage {
             scanSub.unsubscribe(); // stop scanning
           });
 
+          this.qrScanner.show();
+
         } else if (status.denied) {
           // camera permission was permanently denied
           // you must use QRScanner.openSettings() method to guide the user to the settings page
@@ -46,8 +48,8 @@ export class HomePage {
   }
 
   search() {
-    if(this.code === '') {
-      this.error = 'Code can\'t be empty'; 
+    if (this.code === '') {
+      this.error = 'Code can\'t be empty';
     } else {
       this.navCtrl.push(UserDataPage, { code: this.code });
     }
