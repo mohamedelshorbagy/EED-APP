@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { VisitsPage } from '../visits/visits';
+import { SettingsPage } from '../settings/settings';
 
 /**
  * Generated class for the TabsPage page.
@@ -18,13 +19,13 @@ import { VisitsPage } from '../visits/visits';
 export class TabsPage {
   VisitorsPage = HomePage;
   VisitsPage = VisitsPage;
+  SettingsPage = SettingsPage;
   Index: number;
   constructor(public navCtrl: NavController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TabsPage');
-    console.log(this.Index);
   }
 
 

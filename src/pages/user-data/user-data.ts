@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { UserDataProvider } from '../../providers/user-data/user-data'
+import { IonicPage, NavController, NavParams, LoadingController, Loading } from 'ionic-angular';
+import { UserDataProvider } from '../../providers/user-data/user-data';
+
+
 /**
  * Generated class for the UserDataPage page.
  *
@@ -26,10 +28,13 @@ export class UserDataPage {
     };
   error: any;
   response: any;
+  loading: Loading;
+  requestFinished: boolean = false;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private userData: UserDataProvider
+    private userData: UserDataProvider,
+    public loadingCtrl: LoadingController
   ) {
     this.code = this.navParams.get('code');
     console.log(this.code);
@@ -37,22 +42,38 @@ export class UserDataPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VisitsDataPage');
+    this.loading = this.loadingCtrl.create({
+      content: `Loading ...`,
+    });
+
+    this.loading.present();
     this.searchUser();
   }
 
 
   searchUser() {
-    this.userData.searchVisit(this.code).subscribe(res => {
+    this.userData.searchVisitor(this.code).subscribe(res => {
+      this.loading.dismiss();
+      this.requestFinished = true;
       this.response = res['data'][0];
+    }, (err) => {
+      if (err) {
+        this.loading.dismiss();
+        this.message.message = 'Something went wrong';
+        this.message.error = true;
+        this.message.success = false;
+      }
     });
   }
 
 
   checkIn(id) {
     this.userData.checkInVisitor(id).subscribe(res => {
+      console.log(res);
       if (res['error']) {
         this.message.message = 'Something went wrong';
         this.message.error = true;
+        this.message.success = false;
       } else {
         this.message.error = false;
         this.message.success = true;
@@ -64,9 +85,11 @@ export class UserDataPage {
 
   checkOut(id) {
     this.userData.checkOutVisitor(id).subscribe(res => {
+      console.log(res);
       if (res['error']) {
         this.message.message = 'Something went wrong';
         this.message.error = true;
+        this.message.success = false;
       } else {
         this.message.error = false;
         this.message.success = true;

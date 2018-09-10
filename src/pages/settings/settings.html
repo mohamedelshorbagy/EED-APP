@@ -1,0 +1,29 @@
+<!--
+  Generated template for the SettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div class="center-wrapper text-center">
+    <h1 class="text-center">Base Url</h1>
+    <div class="alert-success" *ngIf="message">
+      <p>{{ message }}</p>
+    </div>
+    <ion-input [(ngModel)]="url" type="text" placeholder="Url"></ion-input>
+    <p *ngIf="error">{{ error }}</p>
+    <button ion-button color="primary" block full (click)="save()">Save</button>
+  </div>
+
+
+</ion-content>

@@ -15,39 +15,46 @@
 
 <ion-content padding>
 
-  <div *ngIf="code && response">
-    <div class="alert-success">
-      <p>User Found</p>
-    </div>
-    <ul class="list-group">
-      <li class="list-group-item">Arabic Name : <strong>{{response?.name_en || ""}}</strong></li>
-      <li class="list-group-item">English Name : <strong>{{response?.name_ar || ""}}</strong></li>
-      <li class="list-group-item">Gender : <strong>{{response?.gender || ""}}</strong></li>
-      <li class="list-group-item">Email : <strong>{{response?.email || ""}}</strong></li>
-      <li class="list-group-item">Phone : <strong>{{response?.phone || ""}}</strong></li>
-      <li class="list-group-item">Code : <strong>{{response?.code || ""}}</strong></li>
-      <li class="list-group-item">Education : <strong>{{response?.education || ""}}</strong></li>
-      <li class="list-group-item">Status : <strong>{{response?.status || ""}}</strong></li>
-    </ul>
+  <div *ngIf="code">
+
+    <ng-template [ngIf]="response">
+      <div class="alert-success">
+        <p>User Found</p>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">Arabic Name : <strong>{{response?.name_en || ""}}</strong></li>
+        <li class="list-group-item">English Name : <strong>{{response?.name_ar || ""}}</strong></li>
+        <li class="list-group-item">Gender : <strong>{{response?.gender || ""}}</strong></li>
+        <li class="list-group-item">Email : <strong>{{response?.email || ""}}</strong></li>
+        <li class="list-group-item">Phone : <strong>{{response?.phone || ""}}</strong></li>
+        <li class="list-group-item">Code : <strong>{{response?.code || ""}}</strong></li>
+        <li class="list-group-item">Education : <strong>{{response?.education || ""}}</strong></li>
+        <li class="list-group-item">Status : <strong>{{response?.status || ""}}</strong></li>
+      </ul>
 
 
 
 
-    <div *ngIf="message.success === true" class="alert-success">
-      <p>{{ message.message }}</p>
-    </div>
-    <div *ngIf="message.error === true" class="alert-danger">
-      <p>{{ message.message }}</p>
-    </div>
+      <div *ngIf="message.success === true" class="alert-success">
+        <p>{{ message.message }}</p>
+      </div>
+      <div *ngIf="message.error === true" class="alert-danger">
+        <p>{{ message.message }}</p>
+      </div>
 
-    <button *ngIf="response?.checked === 0" ion-button color="success" (click)="checkIn(response?.id)" class="check-btn">Check
-      In</button>
+      <button *ngIf="response?.checked === 0" ion-button color="success" (click)="checkIn(response?.id)" class="check-btn">Check
+        In</button>
 
-    <button *ngIf="response?.checked === 1" ion-button color="danger" (click)="checkOut(response?.id)" class="check-btn">Check
-      Out</button>
+      <button *ngIf="response?.checked === 1" ion-button color="danger" (click)="checkOut(response?.id)" class="check-btn">Check
+        Out</button>
+    </ng-template>
+    <ng-template [ngIf]="!response && requestFinished">
+      <div class="alert-danger">
+        <p>Something went wrong</p>
+      </div>
+    </ng-template>
   </div>
-  <div class="alert-danger" *ngIf="(code && !response) || (!code && !response)">
-    <p>Somthing went wrong</p>
-  </div>
+
+
 
 </ion-content>

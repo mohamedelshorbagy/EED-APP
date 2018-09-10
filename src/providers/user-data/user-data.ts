@@ -10,12 +10,32 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UserDataProvider {
 
-  baseUrl: string = 'http://test.eed.eg/api';
+  baseUrl: string = 'test.eed.eg';
 
 
   constructor(public http: HttpClient) {
   }
 
+
+  /**
+   * 
+   * @param {String} url
+   * @api private
+   * 
+   */
+  setBaseUrl(url) {
+    this.baseUrl = url;
+  }
+
+  /**
+   * 
+   * @return {String} baseUrl
+   * 
+   */
+
+  get getBaseUrl() {
+    return this.baseUrl;
+  }
   /**
    * 
    * @param {Number} code 
@@ -24,7 +44,8 @@ export class UserDataProvider {
    * @api private
    */
   searchVisitor(code) {
-    return this.http.get(`${this.baseUrl}/visitors-search/?code=${code}`);
+    console.log(this.baseUrl);
+    return this.http.get(`http://${this.baseUrl}/api/visitors-search?code=${code}`);
   }
 
   /**
@@ -35,7 +56,7 @@ export class UserDataProvider {
    * @api private
    */
   searchVisit(code) {
-    return this.http.get(`${this.baseUrl}/visits-search/?code=${code}`);
+    return this.http.get(`http://${this.baseUrl}/api/visits-search?code=${code}`);
 
   }
 
@@ -50,7 +71,7 @@ export class UserDataProvider {
 
   checkInVisitor(id) {
     let body = { id };
-    return this.http.post(`${this.baseUrl}/checkin`, body);
+    return this.http.post(`http://${this.baseUrl}/api/checkin`, body);
   }
 
   /**
@@ -63,7 +84,7 @@ export class UserDataProvider {
    */
   checkOutVisitor(id) {
     let body = { id };
-    return this.http.post(`${this.baseUrl}/checkin`, body);
+    return this.http.post(`http://${this.baseUrl}/api/checkout`, body);
   }
 
   /**
@@ -77,8 +98,7 @@ export class UserDataProvider {
 
   checkInVisits(id) {
     let body = { id };
-    return this.http.post(`${this.baseUrl}/visit-check`, body);
+    return this.http.post(`http://${this.baseUrl}/api/visit-check`, body);
   }
-
 
 }

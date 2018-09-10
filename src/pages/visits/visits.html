@@ -7,22 +7,22 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>visits</ion-title>
+    <ion-title>Visits</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <div class="center-wrapper">
+  <div class="center-wrapper text-center">
     <h1 class="text-center">Visits</h1>
     <ion-input [(ngModel)]="code" type="text" placeholder="Code"></ion-input>
     <p>{{ error }}</p>
     <div class="results" *ngIf="result">
       <p>{{ result }}</p>
     </div>
-    <button ion-button color="primary" (click)="scanQR()">Scan</button>
-    <button ion-button color="primary" (click)="search()">Search</button>
+    <!-- <button ion-button color="primary" (click)="scanQR()">Scan</button> -->
+    <button ion-button color="primary" full block (click)="search()" class="text-center">Search</button>
   </div>
 
 </ion-content>

@@ -8,14 +8,13 @@ import { UserDataPage } from '../user-data/user-data';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  result: any;
-  code: any;
-  error: string = '';
+  code: any = '';
+  error: string;
   constructor(
     public navCtrl: NavController,
     public qrScanner: QRScanner
   ) {
-
+    this.code = '';
   }
 
 
@@ -26,7 +25,6 @@ export class HomePage {
           // start scanning
           let scanSub = this.qrScanner.scan().subscribe((text: string) => {
             console.log('Scanned something', text);
-            this.result = text;
             this.code = text;
             this.qrScanner.hide(); // hide camera preview
             scanSub.unsubscribe(); // stop scanning
@@ -48,7 +46,11 @@ export class HomePage {
   }
 
   search() {
-    this.navCtrl.push(UserDataPage, { code: this.code });
+    if(this.code === '') {
+      this.error = 'Code can\'t be empty'; 
+    } else {
+      this.navCtrl.push(UserDataPage, { code: this.code });
+    }
   }
 
 

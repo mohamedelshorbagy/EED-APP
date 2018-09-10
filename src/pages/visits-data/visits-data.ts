@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Loading } from 'ionic-angular';
 import { UserDataProvider } from '../../providers/user-data/user-data'
 /**
  * Generated class for the VisitsDataPage page.
@@ -26,11 +26,14 @@ export class VisitsDataPage {
     };
   error: any;
   response: any;
+  loading: Loading;
+  requestFinished: boolean = false;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private userData: UserDataProvider
+    private userData: UserDataProvider,
+    public loadingCtrl: LoadingController
   ) {
     this.code = this.navParams.get('code');
     console.log(this.code);
@@ -38,6 +41,12 @@ export class VisitsDataPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VisitsDataPage');
+    this.loading = this.loadingCtrl.create({
+      content: 'Loading ...'
+    });
+
+
+    this.loading.present();
     this.searchVisit();
   }
 
@@ -45,7 +54,17 @@ export class VisitsDataPage {
   searchVisit() {
     this.userData.searchVisit(this.code).subscribe(res => {
       console.log(res);
+      this.loading.dismiss();
+      this.requestFinished = true;
       this.response = res['data'][0];
+
+    }, (err) => {
+      if (err) {
+        this.loading.dismiss();
+        this.message.message = 'Something went wrong';
+        this.message.error = true;
+        this.message.success = false;
+      }
     })
   }
 
@@ -55,6 +74,7 @@ export class VisitsDataPage {
       if (res['error']) {
         this.message.message = 'Something went wrong';
         this.message.error = true;
+        this.message.success = false;
       } else {
         this.message.error = false;
         this.message.success = true;

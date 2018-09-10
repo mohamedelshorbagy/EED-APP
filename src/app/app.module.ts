@@ -14,6 +14,7 @@ import { UserDataProvider } from '../providers/user-data/user-data';
 import { TabsPage } from '../pages/tabs/tabs';
 import { VisitsPage } from '../pages/visits/visits';
 import { VisitsDataPage } from '../pages/visits-data/visits-data';
+import { SettingsPage } from '../pages/settings/settings';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { VisitsDataPage } from '../pages/visits-data/visits-data';
     UserDataPage,
     TabsPage,
     VisitsPage,
-    VisitsDataPage
+    VisitsDataPage,
+    SettingsPage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import { VisitsDataPage } from '../pages/visits-data/visits-data';
     TabsPage,
     VisitsPage,
     VisitsDataPage,
-    UserDataPage
+    UserDataPage,
+    SettingsPage
   ],
   providers: [
     StatusBar,

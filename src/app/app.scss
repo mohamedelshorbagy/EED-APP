@@ -80,7 +80,17 @@
     text-align: center;
 }
 
-
 input {
     text-align: center;
+}
+
+ion-input {
+    text-align: center;
+    border-bottom: 1px solid #DDD;
+    transition: all 0.2s;
+    margin-bottom: 1.5rem;
+}
+
+ion-input:focus {
+    border-bottom: 1px solid rgb(52, 152, 220);
 }
