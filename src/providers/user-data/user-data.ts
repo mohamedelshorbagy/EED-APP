@@ -10,8 +10,75 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UserDataProvider {
 
+  baseUrl: string = 'http://test.eed.eg/api';
+
+
   constructor(public http: HttpClient) {
-    console.log('Hello UserDataProvider Provider');
   }
+
+  /**
+   * 
+   * @param {Number} code 
+   * @method -> GET
+   * @return {Object}
+   * @api private
+   */
+  searchVisitor(code) {
+    return this.http.get(`${this.baseUrl}/visitors-search/?code=${code}`);
+  }
+
+  /**
+   * 
+   * @param {Number} code
+   * @method -> GET
+   * @return {Object} 
+   * @api private
+   */
+  searchVisit(code) {
+    return this.http.get(`${this.baseUrl}/visits-search/?code=${code}`);
+
+  }
+
+  /**
+   * 
+   * @param {Number} id
+   * @method -> POST
+   * @return {Object}
+   * @api private
+   *  
+   */
+
+  checkInVisitor(id) {
+    let body = { id };
+    return this.http.post(`${this.baseUrl}/checkin`, body);
+  }
+
+  /**
+   * 
+   * @param {Number} id
+   * @method -> POST
+   * @return {Object}
+   * @api private
+   *  
+   */
+  checkOutVisitor(id) {
+    let body = { id };
+    return this.http.post(`${this.baseUrl}/checkin`, body);
+  }
+
+  /**
+   * 
+   * @param {Number} id
+   * @method -> POST
+   * @return {Object}
+   * @api private
+   *  
+   */
+
+  checkInVisits(id) {
+    let body = { id };
+    return this.http.post(`${this.baseUrl}/visit-check`, body);
+  }
+
 
 }

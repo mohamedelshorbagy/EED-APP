@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UserDataProvider } from '../../providers/user-data/user-data'
 /**
- * Generated class for the UserDataPage page.
+ * Generated class for the VisitsDataPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,10 +10,10 @@ import { UserDataProvider } from '../../providers/user-data/user-data'
 
 @IonicPage()
 @Component({
-  selector: 'page-user-data',
-  templateUrl: 'user-data.html',
+  selector: 'page-visits-data',
+  templateUrl: 'visits-data.html',
 })
-export class UserDataPage {
+export class VisitsDataPage {
   code: string;
   message: {
     message: string,
@@ -26,6 +26,7 @@ export class UserDataPage {
     };
   error: any;
   response: any;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -37,41 +38,29 @@ export class UserDataPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VisitsDataPage');
-    this.searchUser();
+    this.searchVisit();
   }
 
 
-  searchUser() {
+  searchVisit() {
     this.userData.searchVisit(this.code).subscribe(res => {
+      console.log(res);
       this.response = res['data'][0];
-    });
+    })
   }
 
 
   checkIn(id) {
-    this.userData.checkInVisitor(id).subscribe(res => {
+    this.userData.checkInVisits(id).subscribe(res => {
       if (res['error']) {
         this.message.message = 'Something went wrong';
         this.message.error = true;
       } else {
         this.message.error = false;
         this.message.success = true;
-        this.message.message = res['data']['success'];
+        this.message.message = res['data']['success'] + ' Checked In';
       }
     })
   }
 
-
-  checkOut(id) {
-    this.userData.checkOutVisitor(id).subscribe(res => {
-      if (res['error']) {
-        this.message.message = 'Something went wrong';
-        this.message.error = true;
-      } else {
-        this.message.error = false;
-        this.message.success = true;
-        this.message.message = res['data']['success'];
-      }
-    })
-  }
 }

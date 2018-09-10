@@ -11,12 +11,18 @@ import { HomePage } from '../pages/home/home';
 import { QRScanner } from '@ionic-native/qr-scanner'
 import { UserDataPage } from '../pages/user-data/user-data';
 import { UserDataProvider } from '../providers/user-data/user-data';
+import { TabsPage } from '../pages/tabs/tabs';
+import { VisitsPage } from '../pages/visits/visits';
+import { VisitsDataPage } from '../pages/visits-data/visits-data';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    UserDataPage
+    UserDataPage,
+    TabsPage,
+    VisitsPage,
+    VisitsDataPage
   ],
   imports: [
     BrowserModule,
@@ -27,6 +33,9 @@ import { UserDataProvider } from '../providers/user-data/user-data';
   entryComponents: [
     MyApp,
     HomePage,
+    TabsPage,
+    VisitsPage,
+    VisitsDataPage,
     UserDataPage
   ],
   providers: [

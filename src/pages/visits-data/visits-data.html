@@ -1,5 +1,5 @@
 <!--
-  Generated template for the UserDataPage page.
+  Generated template for the VisitsDataPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Visitor Data</ion-title>
+    <ion-title>Visits Data</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -20,13 +20,12 @@
       <p>User Found</p>
     </div>
     <ul class="list-group">
-      <li class="list-group-item">Arabic Name : <strong>{{response?.name_en || ""}}</strong></li>
-      <li class="list-group-item">English Name : <strong>{{response?.name_ar || ""}}</strong></li>
-      <li class="list-group-item">Gender : <strong>{{response?.gender || ""}}</strong></li>
+      <li class="list-group-item">Name : <strong>{{response?.name || ""}}</strong></li>
+      <li class="list-group-item">Organization Name : <strong>{{response?.org_name || ""}}</strong></li>
+      <li class="list-group-item">Number Of Visitors : <strong>{{response?.num_of_visitors || ""}}</strong></li>
       <li class="list-group-item">Email : <strong>{{response?.email || ""}}</strong></li>
       <li class="list-group-item">Phone : <strong>{{response?.phone || ""}}</strong></li>
       <li class="list-group-item">Code : <strong>{{response?.code || ""}}</strong></li>
-      <li class="list-group-item">Education : <strong>{{response?.education || ""}}</strong></li>
       <li class="list-group-item">Status : <strong>{{response?.status || ""}}</strong></li>
     </ul>
 
@@ -40,14 +39,13 @@
       <p>{{ message.message }}</p>
     </div>
 
-    <button *ngIf="response?.checked === 0" ion-button color="success" (click)="checkIn(response?.id)" class="check-btn">Check
+    <button *ngIf="response?.checked === 0" ion-button round color="success" (click)="checkIn(response?.id)" class="check-btn">Check
       In</button>
 
-    <button *ngIf="response?.checked === 1" ion-button color="danger" (click)="checkOut(response?.id)" class="check-btn">Check
-      Out</button>
+    <!-- <button *ngIf="response?.checked === 1" ion-button round color="danger" (click)="checkOut(response?.id)" class="check-btn">Check
+      Out</button> -->
   </div>
   <div class="alert-danger" *ngIf="(code && !response) || (!code && !response)">
     <p>Somthing went wrong</p>
   </div>
-
 </ion-content>

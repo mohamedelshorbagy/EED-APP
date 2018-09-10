@@ -1,13 +1,21 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
+import { VisitsDataPage } from '../visits-data/visits-data';
 
-import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner'
-import { UserDataPage } from '../user-data/user-data';
+/**
+ * Generated class for the VisitsPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-visits',
+  templateUrl: 'visits.html',
 })
-export class HomePage {
+export class VisitsPage {
   result: any;
   code: any;
   error: string = '';
@@ -48,7 +56,7 @@ export class HomePage {
   }
 
   search() {
-    this.navCtrl.push(UserDataPage, { code: this.code });
+    this.navCtrl.push(VisitsDataPage, { code: this.code });
   }
 
 
