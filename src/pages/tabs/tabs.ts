@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { VisitsPage } from '../visits/visits';
 
@@ -19,7 +19,7 @@ export class TabsPage {
   VisitorsPage = HomePage;
   VisitsPage = VisitsPage;
   Index: number;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController) {
   }
 
   ionViewDidLoad() {
