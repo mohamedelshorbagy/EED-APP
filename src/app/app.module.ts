@@ -7,8 +7,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
-
-import { QRScanner } from '@ionic-native/qr-scanner'
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { UserDataPage } from '../pages/user-data/user-data';
 import { UserDataProvider } from '../providers/user-data/user-data';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -45,7 +44,7 @@ import { SettingsPage } from '../pages/settings/settings';
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    QRScanner,
+    BarcodeScanner,
     UserDataProvider
   ]
 })
